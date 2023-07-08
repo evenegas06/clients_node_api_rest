@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Learn to create API REST with Node js",
   "main": "app.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon ./app.js"
   },
   "keywords": [
     "API",
@@ -14,5 +15,11 @@
     "express"
   ],
   "author": "Eduardo Venegas",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
 }
