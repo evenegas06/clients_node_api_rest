@@ -89,3 +89,25 @@ export const updateClient = async (request, response, next) => {
         next();
     }
 };
+
+/**
+ * Delete client from database by id.
+ * 
+ * @param {express.Request} request 
+ * @param {express.Response} response 
+ * @param {Function} next 
+ */
+export const deleteClient = async (request, response, next) => {
+    const id = request.params.client_id;
+
+    try {
+        await Client.findByIdAndDelete(id);
+
+        response.json({
+            message: 'Cliente eliminado exitosamente.'
+        });
+    } catch (error) {
+        console.error(error);
+        next();
+    }
+};

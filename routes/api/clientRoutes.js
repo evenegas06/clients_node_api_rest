@@ -1,5 +1,5 @@
 import express from 'express';
-import { getClientById, getClients, newClient, updateClient } from '../../controllers/clientController.js';
+import { deleteClient, getClientById, getClients, newClient, updateClient } from '../../controllers/clientController.js';
 
 const router = express.Router();
 
@@ -9,6 +9,7 @@ router.route('/clientes')
 
 router.route('/clientes/:client_id')
     .get(getClientById)
-    .put(updateClient);
+    .put(updateClient)
+    .delete(deleteClient);
 
 export default router;
