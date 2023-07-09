@@ -49,7 +49,7 @@ export const getClients = async (request, response, next) => {
  * @param {express.Response} response 
  * @param {Function} next 
  */
-export const getClient = async (request, response, next) => {
+export const getClientById = async (request, response, next) => {
     try {
         const client = await Client.findById(request.params.client_id);
 
@@ -65,5 +65,27 @@ export const getClient = async (request, response, next) => {
         // console.error(error);
         next();
     }
+};
 
+/**
+ * Update specific client.
+ * 
+ * @param {express.Request} request 
+ * @param {express.Response} response 
+ * @param {Function} next 
+ */
+export const updateClient = async (request, response, next) => {
+    const client_id = request.params.client_id;
+    const body = request.body;
+
+    try {
+        const client = await Client.findByIdAndUpdate(client_id, body, {
+            new: true,
+        });
+
+        response.json(client);
+    } catch (error) {
+        console.error(error);
+        next();
+    }
 };
