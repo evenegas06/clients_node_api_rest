@@ -13,7 +13,7 @@ export const newClient = async (request, response, next) => {
 
     try {
         await client.save();
-        
+
         response.status(201).json({
             message: 'Cliente creado con éxito.',
         });
@@ -21,4 +21,49 @@ export const newClient = async (request, response, next) => {
         console.error(error);
         next();
     }
+};
+
+/**
+ * Get all clients from database.
+ * 
+ * @param {express.Request} request 
+ * @param {express.Response} response 
+ * @param {Function} next 
+ */
+export const getClients = async (request, response, next) => {
+    try {
+        const clients = await Client.find();
+
+        //TODO: message when empty...
+        response.json(clients);
+    } catch (error) {
+        console.error(error);
+        next();
+    }
+};
+
+/**
+ * Get client by id from database.
+ * 
+ * @param {express.Request} request 
+ * @param {express.Response} response 
+ * @param {Function} next 
+ */
+export const getClient = async (request, response, next) => {
+    try {
+        const client = await Client.findById(request.params.client_id);
+
+        if (!client) {
+            response.json({
+                message: 'El id solicitado no existe.'
+            });
+
+            next();
+        }
+        response.json(client);
+    } catch (error) {
+        // console.error(error);
+        next();
+    }
+
 };
