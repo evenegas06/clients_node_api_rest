@@ -1,11 +1,14 @@
 import express from 'express';
 import {
-    newProduct
+    getProducts,
+    newProduct,
+    uploadFile
 } from '../../controllers/productController.js';
 
 const router = express.Router();
 
 router.route('/productos')
-    .post(newProduct);
+    .post(uploadFile, newProduct)
+    .get(getProducts);
 
 export default router;

@@ -6,7 +6,7 @@ import express from 'express';
  * 
  * @param {express.Request} request 
  * @param {express.Response} response 
- * @param {Function} next 
+ * @param {express.NextFunction} next 
  */
 export const newClient = async (request, response, next) => {
     const client = new Client(request.body);
@@ -28,7 +28,7 @@ export const newClient = async (request, response, next) => {
  * 
  * @param {express.Request} request 
  * @param {express.Response} response 
- * @param {Function} next 
+ * @param {express.NextFunction} next 
  */
 export const getClients = async (request, response, next) => {
     try {
@@ -47,7 +47,7 @@ export const getClients = async (request, response, next) => {
  * 
  * @param {express.Request} request 
  * @param {express.Response} response 
- * @param {Function} next 
+ * @param {express.NextFunction} next 
  */
 export const getClientById = async (request, response, next) => {
     try {
@@ -72,7 +72,7 @@ export const getClientById = async (request, response, next) => {
  * 
  * @param {express.Request} request 
  * @param {express.Response} response 
- * @param {Function} next 
+ * @param {express.NextFunction} next 
  */
 export const updateClient = async (request, response, next) => {
     const client_id = request.params.client_id;
@@ -95,7 +95,7 @@ export const updateClient = async (request, response, next) => {
  * 
  * @param {express.Request} request 
  * @param {express.Response} response 
- * @param {Function} next 
+ * @param {express.NextFunction} next 
  */
 export const deleteClient = async (request, response, next) => {
     const id = request.params.client_id;
