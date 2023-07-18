@@ -79,7 +79,7 @@ export const updateClient = async (request, response, next) => {
     const body = request.body;
 
     try {
-        const client = await Client.findByIdAndUpdate(client_id, body, {
+        const client = await Client.findByIdAndUpdate({ _id: client_id }, body, {
             new: true,
         });
 
