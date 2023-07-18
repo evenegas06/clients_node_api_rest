@@ -142,3 +142,23 @@ export const updateProduct = async (request, response, next) => {
         next();
     }
 };
+
+/**
+ * Delete product from database by id.
+ * 
+ * @param {express.Request} request 
+ * @param {express.Response} response 
+ * @param {express.NextFunction} next 
+ */
+export const deleteProduct = async (request, response, next) => {
+    try {
+        await Product.findOneAndDelete({ _id: request.params.product_id });
+
+        response.json({
+            message: 'Producto eliminado exitosamente.'
+        });
+    } catch (error) {
+        console.error(error);
+        next();
+    }
+};
