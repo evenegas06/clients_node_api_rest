@@ -1,4 +1,5 @@
-import Order from '../models/Order.js'
+import express from 'express';
+import Order from '../models/Order.js';
 
 /**
  * Store a new order in database.
@@ -39,6 +40,39 @@ export const getOrders = async (request, response, next) => {
             });
 
         response.json(orders);
+    } catch (error) {
+        console.error(error);
+        next();
+    }
+};
+
+/**
+ * Get order by id from database.
+ * 
+ * @param {express.Request} request 
+ * @param {express.Response} response 
+ * @param {express.NextFunction} next 
+ */
+export const getOrderById = async (request, response, next) => {
+    const order_id = request.params.order_id;
+
+    try {
+        const order = await Order.findById(order_id)
+            .populate('client_id')
+            .populate({
+                path: 'products.product_id',
+                model: 'Product'
+            });
+
+        if (!order) {
+            response.json({
+                message: `El pedido con id: ${order_id} no existe.`
+            });
+
+            return next();
+        }
+
+        response.json(order);
     } catch (error) {
         console.error(error);
         next();
