@@ -21,3 +21,26 @@ export const newOrder = async (request, response, next) => {
         next();
     }
 };
+
+/**
+ * Get all orders from database.
+ * 
+ * @param {express.Request} request 
+ * @param {express.Response} response 
+ * @param {express.NextFunction} next 
+ */
+export const getOrders = async (request, response, next) => {
+    try {
+        const orders = await Order.find({})
+            .populate('client_id')
+            .populate({
+                path: 'products.product_id',
+                model: 'Product'
+            });
+
+        response.json(orders);
+    } catch (error) {
+        console.error(error);
+        next();
+    }
+};
