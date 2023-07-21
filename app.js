@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 
 import client_routes from './routes/api/clientRoutes.js';
 import product_routes from './routes/api/productRoutes.js';
+import order_routes from './routes/api/orderRoutes.js';
 
 /* ----- Create app ----- */
 const app = express();
@@ -17,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 /* ----- Routing ----- */
-app.use('/api', [client_routes, product_routes]);
+app.use('/api', [client_routes, product_routes, order_routes]);
 
 /* ----- Port and init server ----- */
 app.listen(5000, () => {
