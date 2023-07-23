@@ -115,5 +115,6 @@ export const deleteOrder = async(request, response, next) => {
         });
     } catch (error) {
         console.error(error);
+        next();
     }
 };

@@ -1,5 +1,6 @@
 import express from 'express';
 import {
+    deleteProduct,
     getProductById,
     getProducts,
     newProduct,
@@ -15,6 +16,7 @@ router.route('/productos')
 
 router.route('/productos/:product_id')
     .get(getProductById)
-    .put(uploadFile, updateProduct);
+    .put(uploadFile, updateProduct)
+    .delete(deleteProduct);
 
 export default router;
