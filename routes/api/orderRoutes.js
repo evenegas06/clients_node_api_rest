@@ -1,5 +1,6 @@
 import express from 'express';
 import {
+    deleteOrder,
     getOrderById,
     getOrders,
     newOrder,
@@ -14,6 +15,7 @@ router.route('/pedidos')
 
 router.route('/pedidos/:order_id')
     .get(getOrderById)
-    .put(updateOrder);
+    .put(updateOrder)
+    .delete(deleteOrder);
 
 export default router;

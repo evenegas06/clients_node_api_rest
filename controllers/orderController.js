@@ -98,3 +98,22 @@ export const updateOrder = async (request, response, next) => {
         next();
     }
 };
+
+/**
+ * Delete order from database.
+ * 
+ * @param {express.Request} request 
+ * @param {express.Response} response 
+ * @param {express.NextFunction} next 
+ */
+export const deleteOrder = async(request, response, next) => {
+    try {
+        await Order.findOneAndDelete({ _id: request.params.order_id });
+
+        response.json({
+            message: 'La orden ha sido eliminada correctamente.'
+        });
+    } catch (error) {
+        console.error(error);
+    }
+};
