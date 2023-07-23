@@ -1,5 +1,10 @@
 import express from 'express';
-import { getOrderById, getOrders, newOrder } from '../../controllers/orderController.js';
+import {
+    getOrderById,
+    getOrders,
+    newOrder,
+    updateOrder
+} from '../../controllers/orderController.js';
 
 const router = express.Router();
 
@@ -8,6 +13,7 @@ router.route('/pedidos')
     .get(getOrders);
 
 router.route('/pedidos/:order_id')
-    .get(getOrderById);
+    .get(getOrderById)
+    .put(updateOrder);
 
 export default router;

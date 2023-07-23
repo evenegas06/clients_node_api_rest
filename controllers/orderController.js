@@ -78,3 +78,23 @@ export const getOrderById = async (request, response, next) => {
         next();
     }
 };
+
+/**
+ * Update specific order.
+ * 
+ * @param {express.Request} request 
+ * @param {express.Response} response 
+ * @param {express.NextFunction} next 
+ */
+export const updateOrder = async (request, response, next) => {
+    try {
+        const order = await Order.findByIdAndUpdate({ _id: request.params.order_id }, request.body, {
+            new: true
+        });
+
+        response.json(order);
+    } catch (error) {
+        console.error(error);
+        next();
+    }
+};

@@ -15,7 +15,6 @@ import Product from '../models/Product.js';
 const multer_configuration = {
     storage: multer.diskStorage({
         destination: (request, file, cb) => {
-            // console.log(resolve('./uploads'));
             cb(null, resolve('./uploads'));
         },
         filename: (request, file, cb) => {
@@ -59,7 +58,6 @@ export const uploadFile = (request, response, next) => {
  */
 export const newProduct = async (request, response, next) => {
     const product = new Product(request.body);
-    // console.log(request.body);
 
     try {
         if (request.file.filename) {
