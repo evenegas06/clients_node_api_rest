@@ -1,5 +1,6 @@
 import express from 'express';
 import mongoose from "mongoose";
+import cors from "cors";
 
 import client_routes from './routes/api/clientRoutes.js';
 import product_routes from './routes/api/productRoutes.js';
@@ -16,6 +17,9 @@ mongoose.connect('mongodb://127.0.0.1:27017/node_api_rest')
 /* ----- Enable read form data and application json ----- */
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+/* ----- Cors ----- */
+app.use(cors());
 
 /* ----- Routing ----- */
 app.use('/api', [client_routes, product_routes, order_routes]);
