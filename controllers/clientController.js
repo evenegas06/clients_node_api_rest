@@ -18,7 +18,7 @@ export const newClient = async (request, response, next) => {
             message: 'Cliente creado con éxito.',
         });
     } catch (error) {
-        console.error(error);
+        response.json(error);
         next();
     }
 };
