@@ -85,7 +85,7 @@ export const updateClient = async (request, response, next) => {
 
         response.json(client);
     } catch (error) {
-        console.error(error);
+        response.send(error);
         next();
     }
 };
