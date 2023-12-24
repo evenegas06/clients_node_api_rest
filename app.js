@@ -24,6 +24,9 @@ app.use(cors());
 /* ----- Routing ----- */
 app.use('/api', [client_routes, product_routes, order_routes]);
 
+/* ----- Public folder ----- */
+app.use(express.static('uploads'));
+
 /* ----- Port and init server ----- */
 app.listen(5000, () => {
     console.log(`Server listening on port 5000 -> http://localhost:5000`);
