@@ -127,7 +127,7 @@ export const updateProduct = async (request, response, next) => {
         if (request.file) {
             new_product.image = request.file.filename;
         } else {
-            new_product = product.image;
+            new_product.image = product.image;
         }
 
         const update_product = await Product.findOneAndUpdate({ _id: product_id }, new_product, {
