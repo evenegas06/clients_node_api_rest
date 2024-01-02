@@ -4,6 +4,7 @@ import {
     getProductById,
     getProducts,
     newProduct,
+    searchProduct,
     updateProduct,
     uploadFile
 } from '../../controllers/productController.js';
@@ -18,5 +19,8 @@ router.route('/productos/:product_id')
     .get(getProductById)
     .put(uploadFile, updateProduct)
     .delete(deleteProduct);
+
+router.route('/productos/busqueda/:query')
+    .post(searchProduct);
 
 export default router;

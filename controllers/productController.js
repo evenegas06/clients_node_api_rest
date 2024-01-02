@@ -160,3 +160,22 @@ export const deleteProduct = async (request, response, next) => {
         next();
     }
 };
+
+/**
+ * Search product by name.
+ * 
+ * @param {express.Request} request 
+ * @param {express.Response} response 
+ * @param {express.NextFunction} next 
+ */
+export const searchProduct = async (request, response, next) => {
+    try {
+        const { query } = request.params;
+        const product = await Product.find({ name: new RegExp(query, 'i') });
+
+        response.json(product);
+    } catch (error) {
+        console.error(error);
+        next();
+    }
+};
